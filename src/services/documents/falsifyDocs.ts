@@ -1,6 +1,7 @@
 import { IDocuments } from "../../interfaces/documents.interfaces";
 
 import randomNumberInRange from "../general/randomInRange";
+import falsifyCpf from "./falsify/falsifyCpf";
 import falsifyDriverLicenseDateValidate from "./falsify/falsifyDriverLicenseDateValidate";
 import falsifyIdDateValidate from "./falsify/falsifyIdDateValidate";
 import falsifyName from "./falsify/falsifyName";
@@ -28,14 +29,15 @@ const falsifyDocs = (docs: IDocuments): IDocuments => {
 				console.log("Nomes entre documentos diferentes");
 				break;
 			case 2:
-				falsifyIdDateValidate(docs);
+				docs = falsifyIdDateValidate(docs);
 				console.log("Validade da identidade vencida");
 				break;
 			case 3:
-				falsifyDriverLicenseDateValidate(docs);
+				docs = falsifyDriverLicenseDateValidate(docs);
 				console.log("Validade da habilitação vencida");
 				break;
 			case 4:
+				docs = falsifyCpf(docs);
 				console.log("CPF não está batendo entre os documentos");
 				break;
 			case 5:
