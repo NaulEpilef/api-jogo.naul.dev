@@ -39,9 +39,9 @@ const generateRandomDocs = () => {
 		// }
 	};
 
-	const docsFalsified = falsifyDocs(docs);
-	return docsFalsified;
 	if (isFalsified) {
+		const docsFalsified = falsifyDocs(docs);
+		return docsFalsified;
 	}
 
 	return docs;
