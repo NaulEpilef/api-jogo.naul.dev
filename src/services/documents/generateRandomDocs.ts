@@ -5,10 +5,9 @@ import { IDocuments } from "../../interfaces/documents.interfaces";
 import randomNumberInRange from "../general/randomInRange";
 import { generateCodeById } from "../general/generateCode";
 import falsifyDocs from "./falsifyDocs";
-import { PrismaClient } from "@prisma/client";
+import prisma from "../../config/db";
 
 const generateRandomDocs = async () => {
-	const prisma = new PrismaClient();
 	const users = await prisma.users.findMany();
 	prisma.$disconnect();
 

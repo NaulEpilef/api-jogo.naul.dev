@@ -1,12 +1,11 @@
-import { PrismaClient, Users } from "@prisma/client";
+import { Users } from "@prisma/client";
+import prisma from "../../config/db";
 
 interface Request {
   username: string;
 }
 
 const verifyNewUser = async ({ username }: Request): Promise<Users> => {
-  const prisma = new PrismaClient();
-
   let user = (await prisma.users.findFirst({
     where: { username },
   })) as Users;
