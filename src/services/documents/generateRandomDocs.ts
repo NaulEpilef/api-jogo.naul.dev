@@ -3,17 +3,22 @@ import moment, { Moment } from "moment";
 import { IDocuments } from "../../interfaces/documents.interfaces";
 
 import randomNumberInRange from "../general/randomInRange";
-import generateCodes from "../general/generateCode";
+import { generateCodeById } from "../general/generateCode";
 import falsifyDocs from "./falsifyDocs";
+import { PrismaClient } from "@prisma/client";
 
-const generateRandomDocs = () => {
-	const names: string[] = ["Davi", "Naul", "Elder", "Fan", "Jason", "alans"];
+const generateRandomDocs = async () => {
+	const prisma = new PrismaClient();
+	const users = await prisma.users.findMany();
+	prisma.$disconnect();
 
 	const isFalsified: boolean = randomNumberInRange(1, 100) <= 30;
 	
-  const randomName: string = names[randomNumberInRange(0, names.length-1)].toUpperCase();
+	const randomUser = users[randomNumberInRange(0, users.length-1)];
+
+  const randomName: string = randomUser.username.toUpperCase();
 	
-	const cpf: string = generateCodes().toUpperCase();
+	const cpf: string = generateCodeById(randomUser.id).toUpperCase();
 	
 	const dateBirth: Moment = moment().locale("pt-br").subtract(randomNumberInRange(18 * 365, 60 * 365), 'd');
 	

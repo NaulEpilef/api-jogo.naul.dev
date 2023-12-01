@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 // import middlewares from "../middlewares";
 import bot from "./client";
+import verifyNewUser from "../middlewares/verifyNewUser";
 
 // import { option } from "tmi.js"
 
@@ -13,9 +14,9 @@ export default async (
 ) => {
   if (isBot) return;
 
-//   const player = await middlewares.verifyNewUser({
-//     username: context.username,
-//   });
+  const user = await verifyNewUser({
+    username: context.username,
+  });
 //   middlewares.verifyBirthday({ player, target, username: context.username });
 
   const viewerMessage = message.trim();

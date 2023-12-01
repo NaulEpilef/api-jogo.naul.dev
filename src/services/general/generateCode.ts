@@ -7,4 +7,12 @@ const generateCodes = () => {
   return `${uuidSplitted[1]}-${uuidSplitted[2]}`;
 }
 
-export default generateCodes;
+const generateCodeById = (uuid: string) => {
+  const uuidSplitted = uuid.split("-");
+  return `${uuidSplitted[1]}-${uuidSplitted[2]}`;
+}
+
+export {
+  generateCodes,
+  generateCodeById,
+};
