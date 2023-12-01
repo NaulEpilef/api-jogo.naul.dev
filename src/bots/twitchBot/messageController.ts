@@ -14,9 +14,9 @@ export default async (
 ) => {
   if (isBot) return;
 
-  const user = await verifyNewUser({
-    username: context.username,
-  });
+  // const user = await verifyNewUser({
+  //   username: context.username,
+  // });
 //   middlewares.verifyBirthday({ player, target, username: context.username });
 
   const viewerMessage = message.trim();
