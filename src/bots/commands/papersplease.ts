@@ -20,10 +20,10 @@ const exec = async ({
   isBot,
   viewerMessage,
 }: execRequest) => {
-  const userFound = (await prisma.users.findFirst({
-    where: { username: context.username },
-  })) as Users;
-
+	const userFound = (await prisma.users.findFirst({
+		where: { username: context.username },
+	})) as Users;
+	
 	if (!userFound) {
 		const newUser = (await prisma.users.create({
 			data: { username: context.username },
