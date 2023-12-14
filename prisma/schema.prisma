@@ -11,7 +11,19 @@ datasource db {
   // url      = "postgresql://admin:admin@localhost:5431/papersplease?schema=sample"
 }
 
-model Users {
-  id String @id @default(uuid())
-  username String @unique
+model Player {
+  id        String   @id @default(uuid())
+  username  String   @db.VarChar(255) @unique
+  birthday  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("players")
+}
+
+model Command {
+  command   String   @id
+  info      Json
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  @@map("commands")
 }

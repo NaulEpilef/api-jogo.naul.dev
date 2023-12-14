@@ -8,12 +8,12 @@ import falsifyDocs from "./falsifyDocs";
 import prisma from "../../config/db";
 
 const generateRandomDocs = async () => {
-	const users = await prisma.users.findMany();
+	const players = await prisma.player.findMany();
 	prisma.$disconnect();
 
 	const isFalsified: boolean = randomNumberInRange(1, 100) <= 30;
 	
-	const randomUser = users[randomNumberInRange(0, users.length-1)];
+	const randomUser = players[randomNumberInRange(0, players.length-1)];
 
   const randomName: string = randomUser.username.toUpperCase();
 	
